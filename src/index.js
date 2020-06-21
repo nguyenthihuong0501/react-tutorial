@@ -1,16 +1,25 @@
+/* eslint-disable */
+
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 class Square extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: null,
+    };
+  }
+
+  onClickSquare() {
+    console.log("CLICKKKKKKKKKKKKKKKKKK");
+    this.setState({ value: "X" });
+  }
+
   render() {
     return (
-      <button
-        className="square"
-        onClick={function () {
-          alert(`click`);
-        }}
-      >
-        {this.props.value}
+      <button className="square" onClick={() => this.onClickSquare()}>
+        {this.state.value}
       </button>
     );
   }
@@ -18,11 +27,10 @@ class Square extends React.Component {
 
 class Board extends React.Component {
   renderSquare(i) {
-    return <Square value={i} />;
+    return <Square />;
   }
-
   render() {
-    const status = "Next player: X";
+    const status = `Next player: X`;
 
     return (
       <div>
@@ -63,5 +71,4 @@ class Game extends React.Component {
 }
 
 // ========================================
-
 ReactDOM.render(<Game />, document.getElementById("root"));
